@@ -11,4 +11,6 @@ Number for hard is: 425128
 
 # Enjoy!
 
-Please wait coming soon!
+
+# Credits
+Anti Debug From: https://www.unknowncheats.me/forum/c-and-c-/385423-beginner-friendly-anti-debug.html
