@@ -8,14 +8,11 @@
 #include <tlhelp32.h>
 #include <stdlib.h>
 #include "obfuscate.h"
-#include <anti_debug.hpp> // If this has a error download https://github.com/BaumFX/cpp-anti-debug/ and put it in include
 #include <time.h>
 #include <fstream> // So I can make the ban file
 
 
 using namespace std;
-using namespace security;
-using namespace internal;
 
 #pragma warning(disable : 4244)
 #pragma warning(disable : 4002)
@@ -43,7 +40,7 @@ void ChangeTitleThread()
 void DetectDebuggerThread()
 {
     BOOL result; //Create a result boolean for our result to be stored.
-    LPCSTR DetectedWindows[] = { AY_OBFUSCATE("x64dbg", "IDA: Quick start", "IDA v6.8.150423", "dnSpy", "Microsoft Visual Studio", "Visual Studio", "Dumper", "FileDumper", "Process Hacker")}; //Add your own debuggers!
+    LPCSTR DetectedWindows[] = { AY_OBFUSCATE("x64dbg", "IDA: Quick start", "IDA v6.8.150423", "dnSpy", "Microsoft Visual Studio", "Visual Studio", "Dumper", "FileDumper", "Process Hacker", "Task Manager" )}; //Add your own debuggers!
     //Just finding windows may not be enough, so try to include your own process checker.
 
     while (1) //Enter our loop.
@@ -76,7 +73,7 @@ void DetectDebuggerThread()
             exit(0);
         }
 
-        for (int i = 0; i < 3; i++) //Loop thru our array of detected debugger windows.
+        for (int i = 0; i < 10; i++) //Loop thru our array of detected debugger windows.
         {
             if (FindWindowA(0, DetectedWindows[i]) != 0) //Check to see if FindWindow found a debugger that matches our name.
             {
@@ -108,43 +105,6 @@ int main()
 {
     CreateThread(0, 0, (LPTHREAD_START_ROUTINE)DetectDebuggerThread, 0, 0, 0);
     CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ChangeTitleThread, 0, 0, 0);
-
-    if (being_debugged_peb > 0)
-    {
-        system("cls");
-        printf(AY_OBFUSCATE("Debugger found! Exiting...\n"));
-        std::ofstream file{ "C:\\Users\\Public\\banned.txt" };
-        Sleep(1500);
-        exit(0);
-    }
-
-    if (remote_debugger_present > 0)
-    {
-        system("cls");
-        printf(AY_OBFUSCATE("Debugger found! Exiting...\n"));
-        std::ofstream file{ "C:\\Users\\Public\\banned.txt" };
-        Sleep(1500);
-        exit(0);
-    }
-
-    if (debugger_is_present > 0)
-    {
-        system("cls");
-        printf(AY_OBFUSCATE("Debugger found! Exiting...\n"));
-        std::ofstream file{ "C:\\Users\\Public\\banned.txt" };
-        Sleep(1500);
-        exit(0);
-    }
-
-    if (hardware_debug_registers > 0)
-    {
-        system("cls");
-        printf(AY_OBFUSCATE("Debugger found! Exiting...\n"));
-        std::ofstream file{ "C:\\Users\\Public\\banned.txt" };
-        Sleep(1500);
-        exit(0);
-    }
- 
 
     if (is_file_exist("C:\\Users\\Public\\banned.txt"))
     {
