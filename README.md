@@ -5,6 +5,10 @@ but if you actually want to make the challenge a challenge then it's recommended
 # Whats the difference between easy and hard?
 The easy version has no string obfuscation and has next to no protection but the hard one has debugger protection, string obfuscation and a couple more features.
 
+# Cant crack it?
+Number for easy is in the source
+Number for hard is: 425128
+
 # Enjoy!
 
 Please wait coming soon!
