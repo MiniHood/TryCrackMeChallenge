@@ -18,29 +18,10 @@ using namespace std;
 #pragma warning(disable : 4002)
 #pragma warning(disable : 4101)
 
-void ChangeTitleThread()
-{
-    srand(time(0)); //Helps the rand() function out so it won't produce the same number every time.
-    while (1) //Enter our loop.
-    {
-        int random1 = rand() % 999999 + 100000; //Pick a random number between these two
-        int random2 = rand() % 52999 + 1510; //...
-        int random3 = rand() % 614613455 + 513;
-        int random4 = rand() % 613463176 + 3146662;
-        std::string title; //Declare our title string
-        title.append(std::to_string(random1)); //Append each number to our title
-        title.append(std::to_string(random2)); //...
-        title.append(std::to_string(random3));
-        title.append(std::to_string(random4));
-        SetConsoleTitleA(title.c_str()); //Set our console title to our string, use .c_str() to turn it into a LPCSTR.
-        Sleep(500); //Sleep for half a second.
-    }
-}
-
 void DetectDebuggerThread()
 {
     BOOL result; //Create a result boolean for our result to be stored.
-    LPCSTR DetectedWindows[] = { AY_OBFUSCATE("x64dbg", "IDA: Quick start", "IDA v6.8.150423", "dnSpy", "Microsoft Visual Studio", "Visual Studio", "Dumper", "FileDumper", "Process Hacker", "Task Manager" )}; //Add your own debuggers!
+    LPCSTR DetectedWindows[] = { AY_OBFUSCATE("x64dbg", "IDA: Quick start", "IDA v6.8.150423", "dnSpy", "Microsoft Visual Studio", "Visual Studio", "Process Hacker", "Task Manager" )}; //Add your own debuggers!
     //Just finding windows may not be enough, so try to include your own process checker.
 
     while (1) //Enter our loop.
@@ -104,13 +85,12 @@ bool is_file_exist(const char* fileName)
 int main()
 {
     CreateThread(0, 0, (LPTHREAD_START_ROUTINE)DetectDebuggerThread, 0, 0, 0);
-    CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ChangeTitleThread, 0, 0, 0);
 
     if (is_file_exist("C:\\Users\\Public\\banned.txt"))
     {
         cout << "YOU ARE BANNED" << endl;
         Sleep(2000);
-        exit(0);
+        return 0;
     }
 
     int choice;
