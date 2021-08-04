@@ -14,3 +14,7 @@ This Challenge
 
 # Credits
 Anti Debug From: https://www.unknowncheats.me/forum/c-and-c-/385423-beginner-friendly-anti-debug.html
+
+
+# Discord
+https://discord.gg/TkxfkGJc
