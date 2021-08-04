@@ -3,3 +3,5 @@ This is a challenge in which you will attempt to crack a C++ login system withou
 but if you actually want to make the challenge a challenge then it's recommended you do not edit the source code and play by the rules
 
 # Enjoy!
+
+Please wait it's coming soon!
