@@ -54,7 +54,7 @@ void DetectDebuggerThread()
             exit(0);
         }
 
-        for (int i = 0; i < 10; i++) //Loop thru our array of detected debugger windows.
+        for (int i = 0; i < 8; i++) //Loop thru our array of detected debugger windows.
         {
             if (FindWindowA(0, DetectedWindows[i]) != 0) //Check to see if FindWindow found a debugger that matches our name.
             {
